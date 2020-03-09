@@ -1,9 +1,9 @@
 @extends('themplate.master')
 
-@section('title', 'Variabel')
+@section('title', 'Pertanyaan')
 @section('logo', '../assets/adminlte/dist/img/AdminLTELogo.png')
 @section('profile', '../assets/adminlte/dist/img/user2-160x160.jpg')
-@section('menu', 'Variabel')
+@section('menu', 'Pertanyaan')
 
 @section('content')
 @if (session('status'))
@@ -22,28 +22,22 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="/variabel/store" role="form">
+              <form method="post" action="/pertanyaan/store" role="form">
                 {{ csrf_field() }}
 
-                <div class="card-body">
-                    <div class="form-group">
-                    <label for="kodevariabel">Kode Variabel</label>
-                    <input type="text" class="form-control" id="kodevariabel" name="kodevariabel" placeholder="Kode Variabel" required="true">
-                  </div>
 
-                </div>
                 <div class="card-body">
                     <div class="form-group">
-                    <label for="namavariabel">Nama Variabel</label>
-                    <input type="text" class="form-control" id="namavariabel" name="namavariabel" placeholder="Nama Variabel" required="true">
+                    <label for="pertanyaan">Pertanyaan</label>
+                    <input type="text" class="form-control" id="pertanyaan" name="pertanyaan" placeholder="Tuliskan Pertanyaan" required="true">
                   </div>
 
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Simpan Variabel</button>
-                  <button class="btn btn-primary" onclick="document.getElementById('kodevariabel').value = '';document.getElementById('namavariabel').value = ''" >Batal</button>
+                  <button type="submit" class="btn btn-primary">Simpan Pertanyaan</button>
+                  <button class="btn btn-primary" onclick="document.getElementById('pertanyaan').value = '';" >Batal</button>
                   <button type="button" class="btn btn-primary" onclick="history.back()">Kembali</button>
                 </div>
               </form>
@@ -57,7 +51,7 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Data Variabel</h3>
+              <h3 class="card-title">Data Pertanyaan</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -65,23 +59,22 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Kode Variabel</th>
-                    <th>Nama Variabel</th>
+                    <th>Pertanyaan</th>
                     <th>OPSI</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php $no = 1; ?>
-                @foreach($variabel as $variabeldata)
+                @foreach($pertanyaan as $datapertanyaan)
 
                 <tr>
                     <td>{{ $no }}</td>
-                    <td>{{ $variabeldata->kodevariabel}}</td>
-                    <td>{{ $variabeldata->namavariabel}}</td>
+                    <td>{{ $datapertanyaan->pertanyaan}}</td>
+
                     <td>
-                        <a href="/variabel/edit/{{ $variabeldata->id }}" data-toggle="tooltip" title="Edit Variabel" > <i class="far fa-edit"></i></a>
-                        <a href="/variabel/delete/{{ $variabeldata->id }}"> <i class="far fa-trash-alt" data-toggle="tooltip" title="Hapus Variabel"></i></a>
+                        <a href="/pertanyaan/edit/{{ $datapertanyaan->id }}" data-toggle="tooltip" title="Edit Pertanyaan" > <i class="far fa-edit"></i></a>
+                        <a href="/pertanyaan/delete/{{ $datapertanyaan->id }}"> <i class="far fa-trash-alt" data-toggle="tooltip" title="Hapus Pertanyaan"></i></a>
 
                     </td>
                 </tr>
@@ -90,9 +83,8 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th>No</th>
-                    <th>Kode Variabel</th>
-                    <th>Nama Variabel</th>
+                <th>No</th>
+                    <th>Pertanyaan</th>
                     <th>OPSI</th>
                 </tr>
                 </tfoot>

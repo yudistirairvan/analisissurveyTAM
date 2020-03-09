@@ -11,13 +11,19 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('dashboard');
+});
 
 
-Route::get('/','VariabelController@index');
+Route::get('/variabel','VariabelController@index');
 Route::post('/variabel/store','VariabelController@store');
 Route::get('variabel/delete/{id}','VariabelController@delete');
 Route::get('variabel/edit/{id}','VariabelController@edit');
 Route::put('variabel/update/{id}','VariabelController@update');
+
+Route::get('/pertanyaan','PertanyaanController@index');
+Route::post('/pertanyaan/store','PertanyaanController@store');
+Route::get('pertanyaan/delete/{id}','PertanyaanController@delete');
+Route::get('pertanyaan/edit/{id}','PertanyaanController@edit');
+Route::put('pertanyaan/update/{id}','PertanyaanController@update');

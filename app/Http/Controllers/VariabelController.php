@@ -22,13 +22,13 @@ class VariabelController extends Controller
 
             ]);
 
-        return redirect('/')->with('status', 'Success Added!');
+        return redirect('/variabel')->with('status', 'Success Added!');
     }
     public function delete($id)
     {
         $variabel = Variabel::find($id);
         $variabel->delete();
-        return redirect('/')->with('status', 'Success Delete!');
+        return redirect('/variabel')->with('status', 'Success Delete!');
     }
     public function edit($id)
     {
@@ -44,7 +44,7 @@ class VariabelController extends Controller
         $variabel->kodevariabel=$request->kodevariabel;
         $variabel->namavariabel=$request->namavariabel;
         $variabel->save();
-        return redirect('/')->with('status', 'Success Update!');
+        return redirect('/variabel')->with('status', 'Success Update!');
     }
 
 }
