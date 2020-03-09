@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/','VariabelController@index');
+Route::post('/variabel/store','VariabelController@store');
+Route::get('variabel/delete/{id}','VariabelController@delete');
+Route::get('variabel/edit/{id}','VariabelController@edit');
+Route::put('variabel/update/{id}','VariabelController@update');
