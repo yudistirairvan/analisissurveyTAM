@@ -39,10 +39,10 @@
               <div class="inner">
                 <h3></h3>
 
-                <p>Hasil</p>
+                <p>Transaction Data</p>
               </div>
 
-              <a href="/hasil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/transaction" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

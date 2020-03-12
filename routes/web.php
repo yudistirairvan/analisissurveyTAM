@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('dashboard');
 });
-
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/variabel','VariabelController@index');
 Route::post('/variabel/store','VariabelController@store');
@@ -27,3 +29,9 @@ Route::post('/pertanyaan/store','PertanyaanController@store');
 Route::get('pertanyaan/delete/{id}','PertanyaanController@delete');
 Route::get('pertanyaan/edit/{id}','PertanyaanController@edit');
 Route::put('pertanyaan/update/{id}','PertanyaanController@update');
+
+Route::get('/transaction','TransactionDataController@index');
+Route::post('/transaction/store','TransactionDataController@store');
+Route::get('transaction/delete/{id}','TransactionDataController@delete');
+Route::get('transaction/edit/{id}','TransactionDataController@edit');
+Route::put('transaction/update/{id}','TransactionDataController@update');

@@ -43,7 +43,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Simpan Variabel</button>
-                  <button class="btn btn-primary" onclick="document.getElementById('kodevariabel').value = '';document.getElementById('namavariabel').value = ''" >Batal</button>
+                  <button type="button" class="btn btn-primary" onclick="document.getElementById('kodevariabel').value = '';document.getElementById('namavariabel').value = ''" >Batal</button>
                   <button type="button" class="btn btn-primary" onclick="history.back()">Kembali</button>
                 </div>
               </form>

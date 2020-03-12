@@ -15,7 +15,7 @@
           <img src="@yield('profile')" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Al</a>
+          <a href="dashboard" class="d-block">Dashboard</a>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-item">
                 <a href="/variabel" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="fas fa-list-ul"></i>
                 <p>
                     Variabel
                 </p>
@@ -41,7 +41,14 @@
                 </p>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a href="/transaction" class="nav-link">
+                <i class="fas fa-list-ul"></i>
+                <p>
+                    Transaction Data
+                </p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="/hasil" class="nav-link">
                 <i class="fas fa-list-ul"></i>

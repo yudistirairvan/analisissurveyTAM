@@ -37,7 +37,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Simpan Pertanyaan</button>
-                  <button class="btn btn-primary" onclick="document.getElementById('pertanyaan').value = '';" >Batal</button>
+                  <button type="button" class="btn btn-primary" onclick="document.getElementById('pertanyaan').value = '';" >Batal</button>
                   <button type="button" class="btn btn-primary" onclick="history.back()">Kembali</button>
                 </div>
               </form>
