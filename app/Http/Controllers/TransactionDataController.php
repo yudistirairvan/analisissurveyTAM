@@ -23,6 +23,7 @@ class TransactionDataController extends Controller
             'transactiondatas.tidak_setuju',
             'transactiondatas.sangat_setuju',
             'transactiondatas.sangat_tidak_setuju',
+            'transactiondatas.jumlah_data',
             'variabels.namavariabel',
             'pertanyaans.pertanyaan'
         )
@@ -34,11 +35,12 @@ class TransactionDataController extends Controller
     }
     public function store(Request $request)
     {
-         $this->validate($request,['variabel' => 'required','pertanyaan' => 'required']);
+         $this->validate($request,['variabel' => 'required','pertanyaan' => 'required','jumlahdata' => 'required']);
 
             TransactionData::create([
                 'id_variabel' => $request->variabel,
                 'id_pertanyaan' => $request->pertanyaan,
+                'jumlah_data' => $request->jumlahdata,
                 'sangat_setuju' => $request->sangatsetuju,
                 'setuju' => $request->setuju,
                 'tidak_setuju' => $request->tidaksetuju,
@@ -59,33 +61,18 @@ class TransactionDataController extends Controller
     {
 
          $transaction = TransactionData::find($id);
-        //  $transaction = DB::table('transactiondatas')
-        //  ->join('variabels','transactiondatas.id_variabel', '=', 'variabels.id')
-        //  ->join('pertanyaans','transactiondatas.id_pertanyaan', '=', 'pertanyaans.id')
-        //  ->where('transactiondatas.id',$id)
-        //  ->select(
-        //      'transactiondatas.id',
-        //      'transactiondatas.id_variabel',
-        //      'transactiondatas.id_pertanyaan',
-        //      'transactiondatas.setuju',
-        //      'transactiondatas.tidak_setuju',
-        //      'transactiondatas.sangat_setuju',
-        //      'transactiondatas.sangat_tidak_setuju',
-        //      'variabels.namavariabel',
-        //      'pertanyaans.pertanyaan'
-        //  )
-        //  ->get();
          $variabel = Variabel::all();
          $pertanyaan = Pertanyaan::all();
          return view('transaction_edit', ['transaction' => $transaction, 'variabel' => $variabel , 'pertanyaan' => $pertanyaan ]);
     }
     public function update($id, Request $request)
     {
-        $this->validate($request,['variabel' => 'required','pertanyaan' => 'required']);
+        $this->validate($request,['variabel' => 'required','pertanyaan' => 'required','jumlahdata' => 'required']);
 
          $transaction = TransactionData::find($id);
          $transaction->id_variabel=$request->variabel;
          $transaction->id_pertanyaan=$request->pertanyaan;
+         $transaction->jumlah_data=$request->jumlahdata;
          $transaction->setuju=$request->setuju;
          $transaction->sangat_setuju=$request->sangatsetuju;
          $transaction->tidak_setuju=$request->tidaksetuju;

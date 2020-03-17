@@ -46,7 +46,13 @@
                      <select>
                   </div>
                   </div>
+                  <div class="card-body">
+                    <div class="form-group">
+                    <label for="jumlahdata">Sangat Setuju</label>
+                    <input type="text" class="form-control" id="jumlahdata" name="jumlahdata" placeholder="Jumlah data" required="true" >
+                  </div>
 
+                </div>
                 <div class="card-body">
                     <div class="form-group">
                     <label for="sangatsetuju">Sangat Setuju</label>
@@ -70,7 +76,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                    <label for="sangattidaksetuju">Setuju</label>
+                    <label for="sangattidaksetuju">Sangaat Tidak Setuju</label>
                     <input type="text" class="form-control" id="sangattidaksetuju" name="sangattidaksetuju" placeholder="Jumlah yang sangat tidak setuju" >
                   </div>
 

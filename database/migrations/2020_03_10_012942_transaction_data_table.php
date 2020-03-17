@@ -18,6 +18,7 @@ class TransactionDataTable extends Migration
             $table->bigIncrements('id');
             $table->string('id_variabel');
             $table->string('id_pertanyaan');
+            $table->string('jumlah_data');
             $table->string('sangat_setuju')->nullable();
             $table->string('setuju')->nullable();
             $table->string('tidak_setuju')->nullable();
