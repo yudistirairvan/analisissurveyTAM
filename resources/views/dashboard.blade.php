@@ -5,6 +5,7 @@
 @section('profile', '../assets/adminlte/dist/img/user2-160x160.jpg')
 @section('menu', 'Dashboard')
 @section('content')
+
 <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
@@ -59,5 +60,7 @@
             </div>
           </div>
           <!-- ./col -->
-
+<div class="col-lg-12 col-12">
+    <img src="../assets/Header.jpg" width="100%" height="550px" >
+</div>
 @endsection

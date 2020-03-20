@@ -48,7 +48,7 @@
                   </div>
                   <div class="card-body">
                     <div class="form-group">
-                    <label for="jumlahdata">Sangat Setuju</label>
+                    <label for="jumlahdata">Jumlah Data</label>
                     <input type="text" class="form-control" id="jumlahdata" name="jumlahdata" placeholder="Jumlah data" required="true" >
                   </div>
 
@@ -121,7 +121,7 @@
                 <tbody>
 
                 <?php $no = 1;
-                $jumlahdata=count($transaction);
+                // $jumlahdata=count($transaction);
                 ?>
                 @foreach($transaction as $transactiondata)
 
@@ -129,7 +129,7 @@
                     <td>{{ $no }}</td>
                     <td>{{ $transactiondata->namavariabel}}</td>
                     <td>{{ $transactiondata->pertanyaan}}</td>
-                    <td>{{ $jumlahdata }}</td>
+                    <td>{{ $transactiondata->jumlah_data }}</td>
                     <td>{{ $transactiondata->sangat_setuju}}</td>
                     <td>{{ $transactiondata->setuju}}</td>
                     <td>{{ $transactiondata->tidak_setuju}}</td>

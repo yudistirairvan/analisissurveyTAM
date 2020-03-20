@@ -80,4 +80,28 @@ class TransactionDataController extends Controller
          $transaction->save();
         return redirect('/transaction')->with('status', 'Success Update!');
     }
+    public function hasil()
+    {
+
+        $transaction = DB::table('transactiondatas')
+        ->join('variabels','transactiondatas.id_variabel', '=', 'variabels.id')
+        ->join('pertanyaans','transactiondatas.id_pertanyaan', '=', 'pertanyaans.id')
+        ->select(
+            'transactiondatas.id',
+            'transactiondatas.setuju',
+            'transactiondatas.tidak_setuju',
+            'transactiondatas.sangat_setuju',
+            'transactiondatas.sangat_tidak_setuju',
+            'transactiondatas.jumlah_data',
+            'transactiondatas.id_variabel',
+            'variabels.namavariabel',
+            'pertanyaans.pertanyaan'
+        )
+        ->get();
+        $variabel = Variabel::all();
+        $pertanyaan = Pertanyaan::all();
+        return view('hasil',['transaction' => $transaction , 'variabel' => $variabel , 'pertanyaan' => $pertanyaan ]);
+
+    }
+
 }

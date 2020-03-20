@@ -54,7 +54,13 @@
                      <select>
                   </div>
                   </div>
+                  <div class="card-body">
+                    <div class="form-group">
+                    <label for="jumlahdata">Jumlah Data</label>
+                    <input type="text" class="form-control" id="jumlahdata" name="jumlahdata" placeholder="Jumlah data" required="true" value="{{ $transaction->jumlah_data }}" >
+                  </div>
 
+                </div>
                 <div class="card-body">
                     <div class="form-group">
                     <label for="sangatsetuju">Sangat Setuju</label>

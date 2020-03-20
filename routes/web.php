@@ -35,3 +35,6 @@ Route::post('/transaction/store','TransactionDataController@store');
 Route::get('transaction/delete/{id}','TransactionDataController@delete');
 Route::get('transaction/edit/{id}','TransactionDataController@edit');
 Route::put('transaction/update/{id}','TransactionDataController@update');
+
+
+Route::get('/hasil','TransactionDataController@hasil');
