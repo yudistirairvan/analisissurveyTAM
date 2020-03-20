@@ -10,6 +10,7 @@ class TransactionData extends Model
     protected $fillable = [
         'id_variabel',
         'id_pertanyaan',
+        'jumlah_data',
         'sangat_setuju',
         'setuju',
         'tidak_setuju',
