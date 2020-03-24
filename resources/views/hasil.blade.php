@@ -22,8 +22,9 @@
 
                     <th>Pertanyaan</th>
                     <th>Jumlah Data</th>
-                    <th>Setuju</th>
                     <th>Sangat Setuju</th>
+                    <th>Setuju</th>
+
                     <th>Tidak Setuju</th>
                     <th>Sangat Tidak Setuju</th>
 
@@ -31,20 +32,23 @@
                 </thead>
                 <tbody>
 
-                @php $no = 1;
-                $total_sangat_setuju=0;
+                @php
+                        $no = 1;
+                        $total_sangat_setuju=0;
                         $total_setuju=0;
                         $total_tidak_setuju=0;
                         $total_sangat_tidak_setuju=0;
                 @endphp
+
                 @foreach($transaction as $transactiondata)
                     @if($variabeldata->id==$transactiondata->id_variabel)
-                    @php
+                      @php
+
                         $sangat_setuju=$transactiondata->sangat_setuju;
                         $setuju=$transactiondata->setuju;
                         $tidak_setuju=$transactiondata->tidak_setuju;
                         $sangat_tidak_setuju=$transactiondata->sangat_tidak_setuju;
-                    @endphp
+                      @endphp
                     <tr>
 
                         <td>{{ $no }}</td>
@@ -52,34 +56,22 @@
                         <td><p data-toggle="tooltip" title="{{ $transactiondata->pertanyaan}}">{{
                           Str::limit($transactiondata->pertanyaan, $limit =  65, $end = '...')}}</p></td>
                         <td>{{ $transactiondata->jumlah_data }}</td>
-                        <td>{{ $sangat_setuju=$transactiondata->sangat_setuju }} ( {{ round($psangat_setuju=$transactiondata->sangat_setuju/$transactiondata->jumlah_data*100, 2) }}% )</td>
-                        <td>{{ $setuju=$transactiondata->setuju }} ( {{ round($psetuju=$transactiondata->setuju/$transactiondata->jumlah_data*100, 2)}}% )</td>
-                        <td>{{ $tidak_setuju=$transactiondata->tidak_setuju}} ( {{ round($ptidak_setuju=$transactiondata->tidak_setuju/$transactiondata->jumlah_data*100, 2)}}% )</td>
-                        <td>{{ $sangat_tidak_setuju=$transactiondata->sangat_tidak_setuju}} ( {{ round($psangat_tidak_setuju=$transactiondata->sangat_tidak_setuju/$transactiondata->jumlah_data*100, 2)}}% )</td>
+                        <td>{{ $sangat_setuju=$transactiondata->sangat_setuju }} ( {{ round($psangat_setuju=$transactiondata->sangat_setuju/$transactiondata->jumlah_data*100, 0) }}% )</td>
+                        <td>{{ $setuju=$transactiondata->setuju }} ( {{ round($psetuju=$transactiondata->setuju/$transactiondata->jumlah_data*100, 0)}}% )</td>
+                        <td>{{ $tidak_setuju=$transactiondata->tidak_setuju}} ( {{ round($ptidak_setuju=$transactiondata->tidak_setuju/$transactiondata->jumlah_data*100, 0)}}% )</td>
+                        <td>{{ $sangat_tidak_setuju=$transactiondata->sangat_tidak_setuju}} ( {{ round($psangat_tidak_setuju=$transactiondata->sangat_tidak_setuju/$transactiondata->jumlah_data*100, 0)}}% )</td>
 
 
                     </tr>
-                    @php
+                        @php
+
                         $total_sangat_setuju=$total_sangat_setuju+$sangat_setuju;
                         $total_setuju=$total_setuju+$setuju;
                         $total_tidak_setuju=$total_tidak_setuju+$tidak_setuju;
                         $total_sangat_tidak_setuju=$total_sangat_tidak_setuju+$sangat_tidak_setuju;
+                        $total_responden=$total_sangat_setuju+$total_setuju+$total_tidak_setuju+$total_sangat_tidak_setuju;
                         @endphp
 
-
-                    <!-- <tr>
-
-                        <td>{{ $no }}</td>
-                        <td>{{ $transactiondata->namavariabel}}</td>
-                        <td>{{ $transactiondata->pertanyaan}}</td>
-                        <td>{{ $transactiondata->jumlah_data }}</td>
-                        <td>{{ round($sangat_setuju=$transactiondata->sangat_setuju/$transactiondata->jumlah_data*100, 2) }}%</td>
-                        <td>{{ round($setuju=$transactiondata->setuju/$transactiondata->jumlah_data*100, 2)}}% </td>
-                        <td>{{ round($tidak_setuju=$transactiondata->tidak_setuju/$transactiondata->jumlah_data*100, 2)}}%</td>
-                        <td>{{ round($sangat_tidak_setuju=$transactiondata->sangat_tidak_setuju/$transactiondata->jumlah_data*100, 2)}}%</td>
-
-
-                    </tr> -->
                     @else
                     @continue
                     @endif
@@ -101,11 +93,11 @@
 
                 <th colspan="3">Persentase Desimal </th>
 
+                    <th>{{ round($persen_sangat_setuju=$total_sangat_setuju/$total_responden*100, 0) }}%</th>
+                    <th>{{ round($persen_setuju=$total_setuju/$total_responden*100, 0)}}% </th>
+                    <th>{{ round($persen_tidak_setuju=$total_tidak_setuju/$total_responden*100, 0) }}%</th>
+                    <th>{{ round($persen_sangat_tidak_setuju=$total_sangat_tidak_setuju/$total_responden*100, 0) }}%</th>
 
-                    <th>{{ round($persen_sangat_setuju=$total_sangat_setuju/$transactiondata->jumlah_data*100, 4) }}%</th>
-                    <th>{{ round($persen_setuju=$total_setuju/$transactiondata->jumlah_data*100, 4)}}% </th>
-                    <th>{{ round($persen_tidak_setuju=$total_tidak_setuju/$transactiondata->jumlah_data*100, 4) }}%</th>
-                    <th>{{ round($persen_sangat_tidak_setuju=$total_sangat_tidak_setuju/$transactiondata->jumlah_data*100, 4) }}%</th>
 
                 </tr>
                 </tfoot>
@@ -114,6 +106,50 @@
 
 </div>
 </div>
+
+<div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-text-width"></i>
+                  Kesimpulan
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <blockquote>
+                  <p>Berdasarkan tabel diatas.</p>
+                  <small>Responden yang menjawab :
+
+                  <ol>
+                    <li>
+                          Sangat Setuju : {{ round($persen_sangat_setuju=$total_sangat_setuju/$total_responden*100, 0) }}%
+                    </li>
+                    <li>
+                          Setuju : {{ round($persen_setuju=$total_setuju/$total_responden*100, 0)}}%
+                    </li>
+                    <li>
+                          Tidak Setuju : {{ round($persen_tidak_setuju=$total_tidak_setuju/$total_responden*100, 0) }}%
+                    </li>
+                    <li>
+                          Sangat Tidak Setuju : {{ round($persen_sangat_tidak_setuju=$total_sangat_tidak_setuju/$total_responden*100, 0) }}%
+                    </li>
+                  </ol>
+                  </small>
+                  <small>Dapat disimpulkan bahwa :
+
+                          <br>
+                          {{ round($total_yang_setuju=$persen_sangat_setuju+$persen_setuju, 1) }}% Responden Setuju atas {{ $variabeldata->namavariabel }}
+                          <br>
+                          {{ round($total_yang_tidak_setuju=$persen_tidak_setuju+$persen_sangat_tidak_setuju, 1) }}% Responden Tidak Setuju atas {{ $variabeldata->namavariabel }}
+                  </small>
+                </blockquote>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+
 @endforeach
 
 
@@ -140,14 +176,6 @@
         @foreach($variabel as $variabeldata)
         $('#{{ $variabeldata->id}}').DataTable();
         @endforeach
-    //   $('#data').DataTable();
-      // $('#data').DataTable({
-      //   "paging": true,
-      //   "lengthChange": false,
-      //   "searching": false,
-      //   "ordering": true,
-      //   "info": true,
-      //   "autoWidth": false,
-      // });
+
     });
 @stop
