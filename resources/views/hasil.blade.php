@@ -151,10 +151,115 @@
           </div>
 
 @endforeach
+<div class="col-12">
+<div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Rekapitulasi Data</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="rekap" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>No</th>
+
+                    <th>Variabel</th>
+                    <th>Sangat Setuju</th>
+                    <th>Setuju</th>
+
+                    <th>Tidak Setuju</th>
+                    <th>Sangat Tidak Setuju</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                  @php
+                  $urut=1;
+                  $total_sangat_setuju=0;
+                  $total_setuju=0;
+                  $total_tidak_setuju=0;
+                  $total_sangat_tidak_setuju=0;
+                  $total_persen_sangat_setuju=0;
+                  $total_persen_setuju=0;
+                  $total_persen_tidak_setuju=0;
+                  $total_persen_sangat_tidak_setuju=0;
+                  @endphp
+                @foreach($variabel as $variabeldata)
+                        @foreach($transaction as $transactiondata)
+                              @if($variabeldata->id==$transactiondata->id_variabel)
+                                  @php
+                                    $sangat_setuju=$transactiondata->sangat_setuju;
+                                    $setuju=$transactiondata->setuju;
+                                    $tidak_setuju=$transactiondata->tidak_setuju;
+                                    $sangat_tidak_setuju=$transactiondata->sangat_tidak_setuju;
+
+                                    $total_sangat_setuju=$total_sangat_setuju+$sangat_setuju;
+                                    $total_setuju=$total_setuju+$setuju;
+                                    $total_tidak_setuju=$total_tidak_setuju+$tidak_setuju;
+                                    $total_sangat_tidak_setuju=$total_sangat_tidak_setuju+$sangat_tidak_setuju;
+                                    $total_responden=$total_sangat_setuju+$total_setuju+$total_tidak_setuju+$total_sangat_tidak_setuju;
+
+                                  @endphp
+                              @else
+                                @continue
+                              @endif
+
+                        @endforeach
+                <tr>
+                  <td>{{ $urut }}</td>
+                  <td>{{ $variabeldata->namavariabel }}</td>
+                  <td>{{ round($persen_sangat_setuju=$total_sangat_setuju/$total_responden*100, 0) }}%</td>
+                  <td>{{ round($persen_setuju=$total_setuju/$total_responden*100, 0) }}%</td>
+                  <td>{{ round($persen_tidak_setuju=$total_tidak_setuju/$total_responden*100, 0) }}%</td>
+                  <td>{{ round($persen_sangat_tidak_setuju=$total_sangat_tidak_setuju/$total_responden*100, 0) }}%</td>
+                </tr>
 
 
+                @php
+                  $urut++;
+                  $total_persen_sangat_setuju=$total_persen_sangat_setuju+$persen_sangat_setuju;
+                  $total_persen_setuju=$total_persen_setuju+$persen_setuju;
+                  $total_persen_tidak_setuju=$total_persen_tidak_setuju+$persen_tidak_setuju;
+                  $total_persen_sangat_tidak_setuju=$total_persen_sangat_tidak_setuju+$persen_sangat_tidak_setuju;
+
+                  $total_persen=$total_persen_sangat_setuju+$total_persen_setuju+$total_persen_tidak_setuju+$total_persen_sangat_tidak_setuju;
+
+                  $total_sangat_setuju=0;
+                  $total_setuju=0;
+                  $total_tidak_setuju=0;
+                  $total_sangat_tidak_setuju=0;
+                @endphp
+                @endforeach
+                </tbody>
+                <tfoot>
+                <tr>
+
+                <th colspan="2">Total</th>
+
+                    <th>{{ round($total_persen_sangat_setuju, 0)}}</th>
+                    <th>{{ round($total_persen_setuju, 0)}} </th>
+                    <th>{{ round($total_persen_tidak_setuju, 0)}}</th>
+                    <th>{{ round($total_persen_sangat_tidak_setuju, 0)}}</th>
 
 
+                </tr>
+                <tr>
+
+                <th colspan="2">Persentase Desimal </th>
+
+                    <th>{{ round($persen_ss=$total_persen_sangat_setuju/$total_persen*1, 4)}}</th>
+                    <th>{{ round($persen_s=$total_persen_setuju/$total_persen*1, 4)}} </th>
+                    <th>{{ round($persen_ts=$total_persen_tidak_setuju/$total_persen*1, 4)}}</th>
+                    <th>{{ round($persen_sts=$total_persen_sangat_tidak_setuju/$total_persen*1, 4)}}</th>
+
+
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+
+</div>
+</div>
 @endsection
 
 
@@ -176,6 +281,6 @@
         @foreach($variabel as $variabeldata)
         $('#{{ $variabeldata->id}}').DataTable();
         @endforeach
-
+        $('#rekap').DataTable();
     });
 @stop
